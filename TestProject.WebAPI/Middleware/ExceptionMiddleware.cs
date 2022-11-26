@@ -11,7 +11,7 @@ namespace TestProject.WebAPI.Middleware
 			_next = next;
 		}
 
-		public async Task InvokeAsync(HttpContext httpContext)
+		public async Task InvokeAsync(HttpContext httpContext, ILogger<ExceptionMiddleware> logger, IWebHostEnvironment environment)
 		{
 			try
 			{
@@ -19,11 +19,12 @@ namespace TestProject.WebAPI.Middleware
 			}
 			catch (Exception ex)
 			{
-				await HandleExceptionAsync(httpContext, ex);
+				logger.LogError(ex, $"Error on {nameof(ExceptionMiddleware)}");
+				await HandleExceptionAsync(httpContext, ex, environment);
 			}
 		}
 
-		private Task HandleExceptionAsync(HttpContext context, Exception exception)
+		private Task HandleExceptionAsync(HttpContext context, Exception exception, IWebHostEnvironment environment)
 		{
 			context.Response.ContentType = "application/json";
 			context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -32,7 +33,7 @@ namespace TestProject.WebAPI.Middleware
 			{
 				StatusCode = context.Response.StatusCode,
 				Message = "Internal Server Error",
-				Error = exception?.ToString(),
+				Error = environment.IsDevelopment() ? exception?.ToString() : null,
 			}.ToString());
 		}
 	}

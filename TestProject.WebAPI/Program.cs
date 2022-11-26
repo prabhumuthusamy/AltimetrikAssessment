@@ -6,11 +6,13 @@ using TestProject.WebAPI.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 //To enable microsoft logging
-builder.Services.AddLogging(logging =>
-{
-	logging.AddDebug();
-	logging.AddConsole();
-});
+builder.Host.ConfigureLogging((hostingContext, logging) =>
+ {
+	 logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+	 logging.AddConsole();
+	 logging.AddDebug();
+	 logging.AddEventSourceLogger();
+ });
 
 //Environment based appsetting config
 builder.Configuration
@@ -18,6 +20,8 @@ builder.Configuration
 	.AddJsonFile("appsettings.json", true, true)
 	.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
 	.AddEnvironmentVariables();
+
+builder.Services.AddLogging();
 
 //Register Filters
 builder.Services.AddMvcCore(options =>
