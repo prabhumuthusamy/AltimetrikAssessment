@@ -1,0 +1,13 @@
+﻿global using AutoMapper;
+global using FluentAssertions;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using Moq;
+global using System.Net;
+global using TestProject.Data.Context;
+global using TestProject.Data.Entity;
+global using TestProject.DTO;
+global using TestProject.Service.Interface;
+global using TestProject.Tests.MockData;
+global using TestProject.WebAPI.Controllers;
+global using Xunit;

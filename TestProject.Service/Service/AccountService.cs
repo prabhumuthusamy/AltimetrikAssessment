@@ -74,7 +74,12 @@ namespace TestProject.Service.Service
 			{
 				var user = await _dbContext.Accounts.Where(x => x.UserId == userId).ToListAsync(token);
 				result.Data = _mapper.Map<List<AccountDetailResponseDTO>>(user);
+
+				if (!result.Data.Any())
+					result.StatusCode = HttpStatusCode.NoContent;
+				
 				result.IsSuccess = true;
+				return result;
 			}
 
 			result.ErrorCode = userInfo?.ErrorCode;
