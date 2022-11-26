@@ -117,6 +117,10 @@ namespace TestProject.Service.Service
 			var result = new ResponseDTO<List<UserDetailResponseDto>>();
 			var user = await _dbContext.Users.OrderBy(x => x.Name).Skip(availableCount).Take(pageSize).ToListAsync(token);
 			result.Data = _mapper.Map<List<UserDetailResponseDto>>(user);
+			
+			if (!result.Data.Any())
+				result.StatusCode = HttpStatusCode.NoContent;
+
 			result.IsSuccess = true;
 			return result;
 		}

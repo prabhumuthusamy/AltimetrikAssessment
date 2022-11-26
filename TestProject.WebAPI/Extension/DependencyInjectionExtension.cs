@@ -1,5 +1,4 @@
-﻿using TestProject.Service.Interface;
-using TestProject.Service.Service;
+﻿using TestProject.Service.Service;
 
 namespace TestProject.WebAPI.Extension
 {
