@@ -13,8 +13,8 @@
 
 ## Deploying 
 Commands
-1. "docker-compose up" - Sql Server
-2. run docker file
+1. "docker-compose up" - Sql Server to publish database
+2. run docker file - The publish Web API into docker
 
 ## Additional Information
 1. CORS origin
@@ -27,3 +27,8 @@ Commands
 8. Versioning
 
 Set API project as startup prject and run application for debugging.
+
+API Request and Response format informtion is available in below swagger URL. 
+1. Local - http://localhost:5059/swagger
+2. Image - ![image](https://user-images.githubusercontent.com/21257352/204250312-e1e5a45b-8e31-4d75-ac35-a61c7663abc9.png)
+ 
