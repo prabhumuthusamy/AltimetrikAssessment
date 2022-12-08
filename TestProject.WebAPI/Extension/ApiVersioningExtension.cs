@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace TestProject.WebAPI.Extension
+﻿namespace TestProject.WebAPI.Extension
 {
 	public static class ApiVersioningExtension
 	{

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TestProject.DTO;
-
+﻿
 namespace TestProject.WebAPI.Controllers
 {
 	[ApiController]

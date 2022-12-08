@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using TestProject.Data.Entity;
-using TestProject.DTO.User;
+﻿using TestProject.DTO.User;
 
 namespace TestProject.WebAPI.AutoMapperProfile
 {

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TestProject.DTO.Account;
-using TestProject.Service.Interface;
+﻿using TestProject.DTO.Account;
 
 namespace TestProject.WebAPI.Controllers
 {
@@ -15,6 +13,11 @@ namespace TestProject.WebAPI.Controllers
 		}
 
 		[HttpGet("")]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseDTO<List<AccountDetailResponseDTO>>))]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
 		public async Task<IActionResult> GetAccountsAsync(int id, CancellationToken cancellationToken = default)
 		{
 			if (id <= 0) return NotFound();
@@ -23,6 +26,13 @@ namespace TestProject.WebAPI.Controllers
 		}
 
 		[HttpPost("")]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResponseDTO<int>))]
+		[ProducesResponseType(StatusCodes.Status406NotAcceptable)]
+		[ProducesResponseType(StatusCodes.Status409Conflict)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
 		public async Task<IActionResult> CreateAccountAsync(int id, [FromBody] CreateAccountRequestDTO requestDto, CancellationToken cancellationToken = default)
 		{
 			if (id <= 0) return NotFound();
